@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from '@mui/material/styles';
+import { CssBaseline, Container, Box, Stack } from '@mui/material';
+import { theme } from './theme';
+import SwapCard from './components/SwapCard';
+import { WalletContextProvider } from './contexts/WalletContextProvider';
+import { WalletButton } from './components/WalletButton';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <WalletContextProvider>
+        <Box
+          sx={{
+            minHeight: '100vh',
+            bgcolor: 'background.default',
+            py: 8,
+            display: 'flex',
+            alignItems: 'center',
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Container maxWidth="sm">
+            <Stack spacing={4} alignItems="center">
+              <WalletButton />
+              <SwapCard />
+            </Stack>
+          </Container>
+        </Box>
+      </WalletContextProvider>
+    </ThemeProvider>
   );
 }
 
